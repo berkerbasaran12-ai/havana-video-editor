@@ -29,9 +29,14 @@ Gerekenler:
 
 ## Güncelleme
 
+Terminalde:
+
 ```
-/plugin marketplace update havana
+claude plugin marketplace update havana
+claude plugin update havana@havana
 ```
+
+Sonra Claude Code'u yeniden başlat. Claude Code içinden de `/plugin` menüsünden güncelleyebilirsin.
 
 `/plugin` menüsünden **havana** için otomatik güncellemeyi açarsan Claude Code her açılışta yeni sürümü kendisi çeker.
 
