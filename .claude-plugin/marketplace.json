@@ -1,0 +1,16 @@
+{
+  "name": "havana",
+  "owner": {
+    "name": "Havana Dijital"
+  },
+  "metadata": {
+    "description": "Havana Dijital ekip içi Claude Code eklentileri."
+  },
+  "plugins": [
+    {
+      "name": "havana",
+      "source": "./",
+      "description": "Havana Dijital video sistemi: 109 stil kodlu kurgu, Türkçe görsel rehber ve /havana:analiz ile referans video analizi."
+    }
+  ]
+}

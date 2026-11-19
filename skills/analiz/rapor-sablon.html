@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ŞABLON: {{...}} yazan her yeri doldur, örnek blokları çoğalt ya da sil. Görseller göreli yolla: genel/, yogun/, kareler/ -->
+<title>Analiz · {{VIDEO_ADI}}</title>
+<style>
+:root{--ink:#141414;--muted:#6b6b6b;--line:#e2e0db;--paper:#faf9f6;--card:#fff;--accent:#d9480f;
+  --s-konusma:#cfcac0;--s-grafik:#141414;--s-gecis:#d9480f;--s-cta:#8a8378}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,"Segoe UI",Inter,Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 16px 80px}
+header{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:34px;line-height:1.1;margin:6px 0 10px;letter-spacing:-.02em}
+.meta{color:var(--muted);font-size:14px}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:44px 0 14px;padding-top:14px;border-top:1px solid var(--line)}
+.ozet{font-size:18px;line-height:1.5;max-width:760px}
+.ozet strong{background:linear-gradient(transparent 62%,#ffd8c2 62%)}
+/* Zaman çizelgesi: her .seg'in flex değeri saniye cinsinden süresi */
+.tl{display:flex;height:44px;border:1px solid var(--ink);margin:8px 0 6px}
+.seg{position:relative;display:flex;align-items:center;padding:0 8px;font-size:12px;overflow:hidden;white-space:nowrap;border-right:1px solid var(--paper)}
+.seg.konusma{background:var(--s-konusma)}.seg.grafik{background:var(--s-grafik);color:#fff}
+.seg.gecis{background:var(--s-gecis);color:#fff;padding:0;justify-content:center}.seg.cta{background:var(--s-cta);color:#fff}
+.tl-axis{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.t{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--muted)}
+/* Bulgu: solda kanıt görseli, sağda çözüm */
+.bulgu{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:22px;background:var(--card);border:1px solid var(--line);padding:18px;margin-bottom:14px}
+.bulgu img{width:100%;display:block;border:1px solid var(--line)}
+.bulgu .kanit{font-size:12px;color:var(--muted);margin-top:6px;word-break:break-all}
+.bulgu h3{margin:0 0 4px;font-size:18px}
+.bulgu dl{display:grid;grid-template-columns:110px 1fr;gap:4px 12px;margin:12px 0 0;font-size:14px}
+.bulgu dt{color:var(--muted)}.bulgu dd{margin:0}
+.serit{grid-column:1/-1}
+.kod{display:inline-block;font:600 13px/1 ui-monospace,Consolas,monospace;border:1.5px solid var(--ink);padding:4px 6px;margin-right:6px}
+.kod.yakin{border-style:dashed}.kod.yeni{border-color:var(--accent);color:var(--accent)}
+.tahmin{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-left:6px}
+.aday{border-left:3px solid var(--accent);background:var(--card);padding:14px 16px;margin-bottom:10px}
+.aday b{font-family:ui-monospace,Consolas,monospace}
+pre.prompt{background:var(--ink);color:#fff;padding:16px;font:14px/1.5 ui-monospace,Consolas,monospace;white-space:pre-wrap}
+@media (max-width:700px){.bulgu{grid-template-columns:1fr}h1{font-size:26px}.bulgu dl{grid-template-columns:90px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Havana · Referans analizi</div>
+  <h1>{{VIDEO_ADI}}</h1>
+  <div class="meta">{{SÜRE}} s · {{GENİŞLİK}}×{{YÜKSEKLİK}} · {{FPS}} fps · analiz {{TARİH}}</div>
+</header>
+
+<p class="ozet">{{TEK PARAGRAF ÖZET: video nasıl kurulmuş, <strong>en güçlü karar</strong> ne.}}</p>
+
+<h2>Yapı</h2>
+<div class="tl">
+  <!-- ÖRNEK: flex = süre (s). Sınıflar: konusma, grafik, gecis, cta -->
+  <div class="seg konusma" style="flex:3.2">Açılış</div>
+  <div class="seg gecis" style="flex:.3" title="ışık sızması">↯</div>
+  <div class="seg grafik" style="flex:12">Grafik bloğu</div>
+  <div class="seg konusma" style="flex:23">Konuşma + altyazı</div>
+</div>
+<div class="tl-axis"><span>0 s</span><span>{{SÜRE}} s</span></div>
+<table style="margin-top:16px">
+  <tr><th>Zaman</th><th>Bölüm</th><th>Ne oluyor</th></tr>
+  <tr><td class="t">0–3.2 s</td><td>Açılış</td><td>{{...}}</td></tr>
+</table>
+
+<h2>Bulgular</h2>
+<!-- Her bulgu: Altyazı, Font, Konum, Grafik, Geçiş, Konuşmacı kurgusu, Ses, Renk. Kanıtsız bulgu yazma. -->
+<div class="bulgu">
+  <div>
+    <img src="kareler/t20.0.png" alt="">
+    <div class="kanit">kareler/t20.0.png · 20.0 s</div>
+  </div>
+  <div>
+    <h3>Altyazı <span class="kod">C10</span></h3>
+    <p>{{Bir-iki cümlede ne görüldüğü.}}</p>
+    <dl>
+      <dt>Birim</dt><dd>{{öbek / kelime / cümle}}</dd>
+      <dt>Hiyerarşi</dt><dd>{{...}}</dd>
+      <dt>Font</dt><dd>{{aday aile → ücretsiz alternatif}}<span class="tahmin">tahmin</span></dd>
+      <dt>Konum</dt><dd>{{y = %… · 1080 ölçeğinde … px · yüze göre …}}</dd>
+      <dt>Animasyon</dt><dd>{{...}}</dd>
+    </dl>
+  </div>
+  <!-- İsteğe bağlı tam genişlik şerit: -->
+  <div class="serit">
+    <img src="yogun/2.8-3.6s_0.1.jpg" alt="">
+    <div class="kanit">yogun/2.8-3.6s_0.1.jpg · 0.1 s aralık</div>
+  </div>
+</div>
+
+<h2>Stil eşlemesi</h2>
+<table>
+  <tr><th>Bulgu</th><th>Kod</th><th>Not</th></tr>
+  <tr><td>{{...}}</td><td><span class="kod">X20</span></td><td>Tam</td></tr>
+  <tr><td>{{...}}</td><td><span class="kod yakin">M8</span></td><td>Yakın: {{fark}}</td></tr>
+  <tr><td>{{...}}</td><td><span class="kod yeni">C11?</span></td><td>Karşılığı yok → aday</td></tr>
+</table>
+
+<h2>Yeni stil adayları</h2>
+<div class="aday"><b>{{C11}}</b> · <strong>{{Ad}}</strong><br>{{styles.js biçiminde "what" cümlesi.}} <span class="kanit">Kanıt: {{dosya}}</span></div>
+
+<h2>Bununla kurgu</h2>
+<pre class="prompt">ham.mp4 videosunu {{KODLAR}} ile kurgula</pre>
+
+</div>
+</body>
+</html>
